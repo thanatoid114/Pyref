@@ -7,7 +7,7 @@ class bibitem(object):
     Include the items for search in the data base and full original
     content and the access path to out side resource.
     """
-    _content_list = ('type', 'cite_key',  # Important information for citation
+    _content_list = ('cite_key', 'type',  # Important information for citation
                      'author', 'title', 'journal',
                      'year', 'keywords',  # For search
                      'url', 'doi', 'file_path',  # For access
@@ -81,7 +81,7 @@ class bibitem(object):
         """
         bib_type = self._get_itype(bib_text)
         self.bib_content['type'] = bib_type
-        self.bib_content['cite-key'] = self._get_icikey(bib_text)
+        self.bib_content['cite_key'] = self._get_icikey(bib_text)
         for bib_key in self._content_list[2:-3]:
             # bibtex type cite-key and the total contents
             # are need to get separately also for total keywords and file_path
@@ -94,12 +94,6 @@ class bibitem(object):
         """
         bib_text = self._get_bib_file(path_str)
         self._gen_bib_item(bib_text)
-
-        def gen_bib_item_4_db(self):
-            """ Generate the item for the date base
-        """
-        for bib_key in self._content_list:
-            print(bib_key+":"+self.bib_content[bib_key])
 
     def edit_bib(self):
         """ Change the content of the bibtex.
